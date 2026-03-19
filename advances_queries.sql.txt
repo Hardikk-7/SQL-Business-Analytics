@@ -1,0 +1,28 @@
+-- Customer Ranking
+SELECT 
+    c.name,
+    SUM(o.total_amount) AS total_spent,
+    RANK() OVER (ORDER BY SUM(o.total_amount) DESC) AS rank_position
+FROM customers c
+JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY c.name;
+
+-- Running Total
+SELECT 
+    order_date,
+    SUM(total_amount) OVER (ORDER BY order_date) AS running_total
+FROM orders;
+
+-- Top Product per Category
+SELECT *
+FROM (
+    SELECT 
+        p.category,
+        p.product_name,
+        SUM(oi.quantity) AS total_sold,
+        RANK() OVER (PARTITION BY p.category ORDER BY SUM(oi.quantity) DESC) AS rnk
+    FROM products p
+    JOIN order_items oi ON p.product_id = oi.product_id
+    GROUP BY p.category, p.product_name
+) ranked
+WHERE rnk = 1;

@@ -1,0 +1,20 @@
+-- Total Revenue
+SELECT SUM(total_amount) AS total_revenue FROM orders;
+
+-- Top Customers
+SELECT c.name, SUM(o.total_amount) AS total_spent
+FROM customers c
+JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY c.name
+ORDER BY total_spent DESC;
+
+-- Sales by City
+SELECT c.city, SUM(o.total_amount) AS city_revenue
+FROM customers c
+JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY c.city;
+
+-- Monthly Sales
+SELECT MONTH(order_date) AS month, SUM(total_amount) AS revenue
+FROM orders
+GROUP BY month;
