@@ -17,6 +17,8 @@ This project analyzes an e-commerce business dataset using SQL to extract meanin
 * Evaluated city-wise sales performance
 * Observed monthly revenue trends
 
+<img width="709" height="566" alt="Screenshot 2026-03-19 203850" src="https://github.com/user-attachments/assets/37bde76c-aaec-48bd-b3f6-82f8ec24c8c8" />
+
 ## 🚀 Features
 
 * Complex SQL queries (JOIN, GROUP BY, Window Functions)
